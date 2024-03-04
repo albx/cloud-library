@@ -1,0 +1,12 @@
+{
+  "projects": [
+    {
+      "schema": [
+        "CloudLibrary.Client/GraphQL/schema.graphql"
+      ],
+      "documents": [
+        "CloudLibrary.Client/GraphQL/**/*.graphql"
+      ]
+    }
+  ]
+}

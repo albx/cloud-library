@@ -1,0 +1,14 @@
+query GetAllAuthors {
+  authors {
+    items {
+      ...Author
+    }
+  }
+}
+
+fragment Author on Author {
+    id,
+    first_name,
+    middle_name,
+    last_name
+}
