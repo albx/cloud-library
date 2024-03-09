@@ -5,6 +5,22 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudLibrary.Client", "CloudLibrary.Client\CloudLibrary.Client.csproj", "{0B4A5CB8-425E-4D28-86A3-0CDD52852377}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{0E35FBC3-1B1F-4715-9FB7-8EFB0CBFDED5}"
+	ProjectSection(SolutionItems) = preProject
+		Add-Entities.ps1 = Add-Entities.ps1
+		Setup-Db.ps1 = Setup-Db.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "swa-db-connections", "swa-db-connections", "{29B8EF28-5B4C-4C92-9D2D-583F20C1F0E6}"
+	ProjectSection(SolutionItems) = preProject
+		swa-db-connections\staticwebapp.database.config.json = swa-db-connections\staticwebapp.database.config.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "swa", "swa", "{1F4A171F-875F-4B74-8BA5-C72E66162D26}"
+	ProjectSection(SolutionItems) = preProject
+		swa-cli.config.json = swa-cli.config.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +34,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA7E447A-D9EF-4088-8FBA-B0E44F2245FB}
 	EndGlobalSection
 EndGlobal

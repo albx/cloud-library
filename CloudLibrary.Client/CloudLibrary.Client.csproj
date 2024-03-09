@@ -7,8 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <GraphQL Remove="graphql\queries\GetAllAuthors.graphql" />
+    <GraphQL Remove="graphql\queries\GetAllBooks.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.2" PrivateAssets="all" />
+    <PackageReference Include="StrawberryShake.Blazor" Version="13.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="GraphQL\Queries\" />
   </ItemGroup>
 
 </Project>
