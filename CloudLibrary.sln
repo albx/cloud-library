@@ -16,6 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "swa-db-connections", "swa-d
 		swa-db-connections\staticwebapp.database.config.json = swa-db-connections\staticwebapp.database.config.json
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "swa", "swa", "{1F4A171F-875F-4B74-8BA5-C72E66162D26}"
+	ProjectSection(SolutionItems) = preProject
+		swa-cli.config.json = swa-cli.config.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

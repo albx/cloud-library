@@ -2,6 +2,14 @@
   "projects": [
     {
       "schema": [
+        "CloudLibrary.Client/bin/Debug/net8.0/GraphQL/schema.graphql"
+      ],
+      "documents": [
+        "CloudLibrary.Client/bin/Debug/net8.0/GraphQL/**/*.graphql"
+      ]
+    },
+    {
+      "schema": [
         "CloudLibrary.Client/GraphQL/schema.graphql"
       ],
       "documents": [

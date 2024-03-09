@@ -4,4 +4,42 @@
 
 <h1>Find your books</h1>
 
-Welcome to your new app.
+<UseGetAllBooks Context="books">
+    <LoadingContent>
+        Loading...
+    </LoadingContent>
+    <ChildContent>
+        <div class="row">
+            @foreach (var book in books.Books.Items)
+            {
+                <div class="col-md-4 mb-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@book.Title</h5>
+                            <h6 class="card-subtitle">@FormatAutors(book.Authors)</h6>
+                            @if (book.Year.HasValue)
+                            {
+                                <p class="card-text">
+                                    <strong>year</strong>: @book.Year.Value
+                                </p>
+                            }
+                            @if (book.Pages.HasValue)
+                            {
+                                <p class="card-text">
+                                    <strong># pages</strong>: @book.Pages.Value
+                                </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </ChildContent>
+</UseGetAllBooks>
+
+@code {
+    private string FormatAutors(GraphQL.Services.IGetAllBooks_Books_Items_Authors authors)
+    {
+        return string.Join(",", authors.Items.Select(a => $"{a.First_name} {a.Last_name}"));
+    }
+}
