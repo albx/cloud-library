@@ -39,6 +39,8 @@ public class CloudLibraryAuthenticationStateProvider : AuthenticationStateProvid
                         .Where(r => !r.Equals("anonymous", StringComparison.InvariantCultureIgnoreCase))
                         .Select(r => new Claim(ClaimTypes.Role, r)));
                 }
+
+                return new AuthenticationState(new ClaimsPrincipal(identity));
             }
 
             return new AuthenticationState(new ClaimsPrincipal());
