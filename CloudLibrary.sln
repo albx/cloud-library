@@ -8,7 +8,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{0E35FBC3-1B1F-4715-9FB7-8EFB0CBFDED5}"
 	ProjectSection(SolutionItems) = preProject
 		Add-Entities.ps1 = Add-Entities.ps1
+		Add-MyBooks.ps1 = Add-MyBooks.ps1
+		sql\my_books.sql = sql\my_books.sql
 		Setup-Db.ps1 = Setup-Db.ps1
+		sql\sp_add_book_to_my_list.sql = sql\sp_add_book_to_my_list.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "swa-db-connections", "swa-db-connections", "{29B8EF28-5B4C-4C92-9D2D-583F20C1F0E6}"

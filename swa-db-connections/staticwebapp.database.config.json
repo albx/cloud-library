@@ -20,7 +20,9 @@
     },
     "host": {
       "cors": {
-        "origins": ["http://localhost:4280"],
+        "origins": [
+          "http://localhost:4280"
+        ],
         "allow-credentials": false
       },
       "authentication": {
@@ -103,6 +105,76 @@
           "linking.target.fields": []
         }
       }
+    },
+    "MyBooks": {
+      "source": {
+        "object": "dbo.my_books",
+        "type": "table"
+      },
+      "graphql": {
+        "enabled": true,
+        "type": {
+          "singular": "MyBooks",
+          "plural": "MyBooks"
+        }
+      },
+      "rest": {
+        "enabled": true
+      },
+      "permissions": [
+        {
+          "role": "authenticated",
+          "actions": [
+            {
+              "action": "read"
+            }
+          ]
+        }
+      ],
+      "relationships": {
+        "books": {
+          "cardinality": "one",
+          "target.entity": "Book",
+          "source.fields": [],
+          "target.fields": [],
+          "linking.source.fields": [],
+          "linking.target.fields": []
+        }
+      }
+    },
+    "AddBookToMyList": {
+      "source": {
+        "object": "dbo.sp_add_book_to_my_list",
+        "type": "stored-procedure",
+        "parameters": {
+          "userId": "userId",
+          "bookId": "bookId"
+        }
+      },
+      "graphql": {
+        "enabled": false,
+        "operation": "mutation",
+        "type": {
+          "singular": "AddBookToMyList",
+          "plural": "AddBookToMyLists"
+        }
+      },
+      "rest": {
+        "enabled": true,
+        "methods": [
+          "post"
+        ]
+      },
+      "permissions": [
+        {
+          "role": "authenticated",
+          "actions": [
+            {
+              "action": "execute"
+            }
+          ]
+        }
+      ]
     }
   }
 }
