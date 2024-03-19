@@ -1,0 +1,54 @@
+﻿@page "/my-books"
+
+<PageTitle>Cloud Library - My books</PageTitle>
+
+<h1>My books</h1>
+
+<UseGetMyBooks Context="books">
+    <LoadingContent>
+        Loading...
+    </LoadingContent>
+    <ChildContent>
+        <div class="row">
+            @if (!books.MyBooks.Items.Any())
+            {
+                <div class="col-md-12">
+                    <div class="alert alert-info">Nothing here...</div>
+                </div>
+            }
+            else
+            {
+                @foreach (var book in books.MyBooks.Items)
+                {
+                    <div class="col-md-4 mb-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@book.Books.Title</h5>
+                                <h6 class="card-subtitle">@FormatAutors(book.Books.Authors)</h6>
+                                @if (book.Books.Year.HasValue)
+                                {
+                                    <p class="card-text">
+                                        <strong>year</strong>: @book.Books.Year.Value
+                                    </p>
+                                }
+                                @if (book.Books.Pages.HasValue)
+                                {
+                                    <p class="card-text">
+                                        <strong># pages</strong>: @book.Books.Pages.Value
+                                    </p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </ChildContent>
+</UseGetMyBooks>
+
+@code {
+    private string FormatAutors(GraphQL.Services.IGetMyBooks_MyBooks_Items_Books_Authors authors)
+    {
+        return string.Join(",", authors.Items.Select(a => $"{a.First_name} {a.Last_name}"));
+    }
+}

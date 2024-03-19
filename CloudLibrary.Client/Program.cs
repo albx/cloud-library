@@ -16,6 +16,9 @@ builder.Services.AddHttpClient(
     "AuthClient",
     client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 
+builder.Services.AddHttpClient<MyBooksClient>(
+    client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+
 builder.Services
     .AddAuthorizationCore()
     .AddScoped<AuthenticationStateProvider, CloudLibraryAuthenticationStateProvider>();

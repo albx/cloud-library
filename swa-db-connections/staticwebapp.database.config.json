@@ -126,7 +126,10 @@
           "role": "authenticated",
           "actions": [
             {
-              "action": "read"
+              "action": "read",
+              "policy": {
+                "database": "@item.user_id eq @claims.UserId"
+              }
             }
           ]
         }
@@ -167,7 +170,7 @@
       },
       "permissions": [
         {
-          "role": "authenticated",
+          "role": "anonymous",
           "actions": [
             {
               "action": "execute"

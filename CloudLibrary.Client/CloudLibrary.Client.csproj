@@ -9,6 +9,7 @@
   <ItemGroup>
     <GraphQL Remove="graphql\queries\GetAllAuthors.graphql" />
     <GraphQL Remove="graphql\queries\GetAllBooks.graphql" />
+    <GraphQL Remove="graphql\queries\GetMyBooks.graphql" />
   </ItemGroup>
 
   <ItemGroup>
