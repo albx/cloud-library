@@ -40,9 +40,12 @@ type Author {
 
 type MyBooks {
   id: Int!
-  user_id: String!
   book_id: Int!
-  books: Book!
+  title: String!
+  pages: Int
+  year: Int
+  authors: String
+  user_id: String!
 }
 
 "Order by input for Book GraphQL type"
@@ -159,12 +162,18 @@ input AuthorFilterInput {
 input MyBooksOrderByInput {
   "Order by options for id"
   id: OrderBy
-  "Order by options for user_id"
-  user_id: OrderBy
   "Order by options for book_id"
   book_id: OrderBy
-  "Order by options for books"
-  books: BookOrderByInput
+  "Order by options for title"
+  title: OrderBy
+  "Order by options for pages"
+  pages: OrderBy
+  "Order by options for year"
+  year: OrderBy
+  "Order by options for authors"
+  authors: OrderBy
+  "Order by options for user_id"
+  user_id: OrderBy
   "Conditions to be treated as AND operations"
   and: [MyBooksOrderByInput]
   "Conditions to be treated as OR operations"
@@ -175,12 +184,18 @@ input MyBooksOrderByInput {
 input MyBooksFilterInput {
   "Filter options for id"
   id: IntFilterInput
-  "Filter options for user_id"
-  user_id: StringFilterInput
   "Filter options for book_id"
   book_id: IntFilterInput
-  "Filter options for books"
-  books: BookFilterInput
+  "Filter options for title"
+  title: StringFilterInput
+  "Filter options for pages"
+  pages: IntFilterInput
+  "Filter options for year"
+  year: IntFilterInput
+  "Filter options for authors"
+  authors: StringFilterInput
+  "Filter options for user_id"
+  user_id: StringFilterInput
   "Conditions to be treated as AND operations"
   and: [MyBooksFilterInput]
   "Conditions to be treated as OR operations"

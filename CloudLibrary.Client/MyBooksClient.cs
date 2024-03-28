@@ -23,4 +23,10 @@ public class MyBooksClient
         var response = await _httpClient.PostAsJsonAsync("data-api/rest/AddBookToMyList", new { bookId, userId });
         response.EnsureSuccessStatusCode();
     }
+
+    public async Task<MyBooksResponse> GetMyBooksAsync()
+    {
+        var myBooksResponse = await _httpClient.GetFromJsonAsync<MyBooksResponse>("data-api/rest/MyBooks");
+        return myBooksResponse ?? new();
+    }
 }

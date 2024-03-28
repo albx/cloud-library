@@ -10,8 +10,7 @@
   "runtime": {
     "rest": {
       "enabled": true,
-      "path": "/rest",
-      "request-body-strict": true
+      "path": "/rest"
     },
     "graphql": {
       "enabled": true,
@@ -106,45 +105,6 @@
         }
       }
     },
-    "MyBooks": {
-      "source": {
-        "object": "dbo.my_books",
-        "type": "table"
-      },
-      "graphql": {
-        "enabled": true,
-        "type": {
-          "singular": "MyBooks",
-          "plural": "MyBooks"
-        }
-      },
-      "rest": {
-        "enabled": true
-      },
-      "permissions": [
-        {
-          "role": "authenticated",
-          "actions": [
-            {
-              "action": "read",
-              "policy": {
-                "database": "@item.user_id eq @claims.UserId"
-              }
-            }
-          ]
-        }
-      ],
-      "relationships": {
-        "books": {
-          "cardinality": "one",
-          "target.entity": "Book",
-          "source.fields": [],
-          "target.fields": [],
-          "linking.source.fields": [],
-          "linking.target.fields": []
-        }
-      }
-    },
     "AddBookToMyList": {
       "source": {
         "object": "dbo.sp_add_book_to_my_list",
@@ -174,6 +134,38 @@
           "actions": [
             {
               "action": "execute"
+            }
+          ]
+        }
+      ]
+    },
+    "MyBooks": {
+      "source": {
+        "object": "dbo.vw_my_books_lookup",
+        "type": "view",
+        "key-fields": [
+          "id"
+        ]
+      },
+      "graphql": {
+        "enabled": true,
+        "type": {
+          "singular": "MyBooks",
+          "plural": "MyBooks"
+        }
+      },
+      "rest": {
+        "enabled": true
+      },
+      "permissions": [
+        {
+          "role": "authenticated",
+          "actions": [
+            {
+              "action": "read",
+              "policy": {
+                "database": "@item.user_id eq @claims.userId"
+              }
             }
           ]
         }
