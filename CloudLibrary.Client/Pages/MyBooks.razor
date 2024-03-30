@@ -1,0 +1,60 @@
+﻿@page "/my-books"
+@attribute [Authorize]
+
+@inject MyBooksClient MyBooksClient
+
+<PageTitle>Cloud Library - My books</PageTitle>
+
+<h1>My books</h1>
+
+@if (books is null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="row">
+        @if (!books.Any())
+        {
+            <div class="col-md-12">
+                <div class="alert alert-info">Nothing here...</div>
+            </div>
+        }
+        else
+        {
+            @foreach (var book in books)
+            {
+                <div class="col-md-4 mb-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@book.Title</h5>
+                            <h6 class="card-subtitle">@book.Authors</h6>
+                            @if (book.Year.HasValue)
+                            {
+                                <p class="card-text">
+                                    <strong>year</strong>: @book.Year.Value
+                                </p>
+                            }
+                            @if (book.Pages.HasValue)
+                            {
+                                <p class="card-text">
+                                    <strong># pages</strong>: @book.Pages.Value
+                                </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+}
+
+@code {
+    private MyBooksResponse.MyBookListItem[]? books = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var myBooks = await MyBooksClient.GetMyBooksAsync();
+        books = myBooks.Value;
+    }
+}

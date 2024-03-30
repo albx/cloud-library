@@ -10,8 +10,7 @@
   "runtime": {
     "rest": {
       "enabled": true,
-      "path": "/rest",
-      "request-body-strict": true
+      "path": "/rest"
     },
     "graphql": {
       "enabled": true,
@@ -20,7 +19,9 @@
     },
     "host": {
       "cors": {
-        "origins": ["http://localhost:4280"],
+        "origins": [
+          "http://localhost:4280"
+        ],
         "allow-credentials": false
       },
       "authentication": {
@@ -103,6 +104,72 @@
           "linking.target.fields": []
         }
       }
+    },
+    "AddBookToMyList": {
+      "source": {
+        "object": "dbo.sp_add_book_to_my_list",
+        "type": "stored-procedure",
+        "parameters": {
+          "userId": "userId",
+          "bookId": "bookId"
+        }
+      },
+      "graphql": {
+        "enabled": false,
+        "operation": "mutation",
+        "type": {
+          "singular": "AddBookToMyList",
+          "plural": "AddBookToMyLists"
+        }
+      },
+      "rest": {
+        "enabled": true,
+        "methods": [
+          "post"
+        ]
+      },
+      "permissions": [
+        {
+          "role": "anonymous",
+          "actions": [
+            {
+              "action": "execute"
+            }
+          ]
+        }
+      ]
+    },
+    "MyBooks": {
+      "source": {
+        "object": "dbo.vw_my_books_lookup",
+        "type": "view",
+        "key-fields": [
+          "id"
+        ]
+      },
+      "graphql": {
+        "enabled": true,
+        "type": {
+          "singular": "MyBooks",
+          "plural": "MyBooks"
+        }
+      },
+      "rest": {
+        "enabled": true
+      },
+      "permissions": [
+        {
+          "role": "authenticated",
+          "actions": [
+            {
+              "action": "read",
+              "policy": {
+                "database": "@item.user_id eq @claims.userId"
+              }
+            }
+          ]
+        }
+      ]
     }
   }
 }

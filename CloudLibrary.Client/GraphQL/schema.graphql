@@ -38,6 +38,16 @@ type Author {
   books("The number of items to return from the page start point" first: Int "A pagination token from a previous query to continue through a paginated list" after: String "Filter options for query" filter: BookFilterInput "Ordering options for query" orderBy: BookOrderByInput): BookConnection!
 }
 
+type MyBooks {
+  id: Int!
+  book_id: Int!
+  title: String!
+  pages: Int
+  year: Int
+  authors: String
+  user_id: String!
+}
+
 "Order by input for Book GraphQL type"
 input BookOrderByInput {
   "Order by options for id"
@@ -148,6 +158,50 @@ input AuthorFilterInput {
   or: [AuthorFilterInput]
 }
 
+"Order by input for MyBooks GraphQL type"
+input MyBooksOrderByInput {
+  "Order by options for id"
+  id: OrderBy
+  "Order by options for book_id"
+  book_id: OrderBy
+  "Order by options for title"
+  title: OrderBy
+  "Order by options for pages"
+  pages: OrderBy
+  "Order by options for year"
+  year: OrderBy
+  "Order by options for authors"
+  authors: OrderBy
+  "Order by options for user_id"
+  user_id: OrderBy
+  "Conditions to be treated as AND operations"
+  and: [MyBooksOrderByInput]
+  "Conditions to be treated as OR operations"
+  or: [MyBooksOrderByInput]
+}
+
+"Filter input for MyBooks GraphQL type"
+input MyBooksFilterInput {
+  "Filter options for id"
+  id: IntFilterInput
+  "Filter options for book_id"
+  book_id: IntFilterInput
+  "Filter options for title"
+  title: StringFilterInput
+  "Filter options for pages"
+  pages: IntFilterInput
+  "Filter options for year"
+  year: IntFilterInput
+  "Filter options for authors"
+  authors: StringFilterInput
+  "Filter options for user_id"
+  user_id: StringFilterInput
+  "Conditions to be treated as AND operations"
+  and: [MyBooksFilterInput]
+  "Conditions to be treated as OR operations"
+  or: [MyBooksFilterInput]
+}
+
 type Query {
   "Get a list of all the Book items from the database"
   books("The number of items to return from the page start point" first: Int "A pagination token from a previous query to continue through a paginated list" after: String "Filter options for query" filter: BookFilterInput "Ordering options for query" orderBy: BookOrderByInput): BookConnection!
@@ -157,6 +211,10 @@ type Query {
   authors("The number of items to return from the page start point" first: Int "A pagination token from a previous query to continue through a paginated list" after: String "Filter options for query" filter: AuthorFilterInput "Ordering options for query" orderBy: AuthorOrderByInput): AuthorConnection!
   "Get a Author from the database by its ID\/primary key"
   author_by_pk(id: Int!): Author
+  "Get a list of all the MyBooks items from the database"
+  myBooks("The number of items to return from the page start point" first: Int "A pagination token from a previous query to continue through a paginated list" after: String "Filter options for query" filter: MyBooksFilterInput "Ordering options for query" orderBy: MyBooksOrderByInput): MyBooksConnection!
+  "Get a MyBooks from the database by its ID\/primary key"
+  myBooks_by_pk(id: Int!): MyBooks
 }
 
 "The return object from a filter query that supports a pagination token for paging through results"
@@ -173,6 +231,16 @@ type BookConnection {
 type AuthorConnection {
   "The list of items that matched the filter"
   items: [Author!]!
+  "A pagination token to provide to subsequent pages of a query"
+  endCursor: String
+  "Indicates if there are more pages of items to return"
+  hasNextPage: Boolean!
+}
+
+"The return object from a filter query that supports a pagination token for paging through results"
+type MyBooksConnection {
+  "The list of items that matched the filter"
+  items: [MyBooks!]!
   "A pagination token to provide to subsequent pages of a query"
   endCursor: String
   "Indicates if there are more pages of items to return"

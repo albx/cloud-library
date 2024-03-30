@@ -1,5 +1,8 @@
 ﻿@page "/"
 
+@inject MyBooksClient MyBooksClient
+@inject IJSRuntime Js
+
 <PageTitle>Cloud Library - Books</PageTitle>
 
 <h1>Find your books</h1>
@@ -29,6 +32,11 @@
                                     <strong># pages</strong>: @book.Pages.Value
                                 </p>
                             }
+                            <AuthorizeView>
+                                <Authorized>
+                                    <button type="button" class="btn btn-primary" @onclick="@(() => AddBookToMyListAsync(book.Id))">Add to my books</button>
+                                </Authorized>
+                            </AuthorizeView>
                         </div>
                     </div>
                 </div>
@@ -41,5 +49,18 @@
     private string FormatAutors(GraphQL.Services.IGetAllBooks_Books_Items_Authors authors)
     {
         return string.Join(",", authors.Items.Select(a => $"{a.First_name} {a.Last_name}"));
+    }
+
+    private async Task AddBookToMyListAsync(int bookId)
+    {
+        try
+        {
+            await MyBooksClient.AddBookToMyListAsync(bookId);
+            await Js.InvokeVoidAsync("alert", "Book added successfully!");
+        }
+        catch 
+        {
+            await Js.InvokeVoidAsync("alert", "There was an error adding this book to your list");
+        }
     }
 }

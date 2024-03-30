@@ -5,7 +5,7 @@
     "strawberryShake": {
       "name": "LibraryClient",
       "namespace": "CloudLibrary.Client.GraphQL.Services",
-      "url": "https://localhost:5001/graphql",
+      "url": "http://localhost:5000/graphql",
       "records": {
         "inputs": false,
         "entities": false
